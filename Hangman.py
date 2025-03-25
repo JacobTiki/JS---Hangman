@@ -23,9 +23,13 @@ def playGame():
         wordlist.append(" _ ")
         print(wordlist[index],end="")
     print("")
-    while mistakes > 0 or " _ " in wordlist: 
+    while mistakes > 0 and " _ " in wordlist: 
         guess = input("Guess a letter: ")
         mistakes = letterCheck(guess, mistakes)
+    if mistakes == 0:
+        print("Sorry! The word was " + word + ".")
+    elif " _ " not in wordlist:
+        print("Congratulations! The word was " + word + ".")  
         
 
 def letterCheck(letter, mistakes):
@@ -35,11 +39,10 @@ def letterCheck(letter, mistakes):
             wordlist[index] ="" + letter + ""
             inword = True
         print(wordlist[index],end="")
+    print("")
     if inword == False:
         mistakes -= 1
-        print("")
-        print("Sorry! That letter is not in the word. You have " + str(mistakes) + " mistakes left.")
-    print("")
+        print("That letter is not in the word. You have " + str(mistakes) + " mistakes left.")
     return mistakes
 
 playGame()
