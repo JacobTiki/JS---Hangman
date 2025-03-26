@@ -3,21 +3,16 @@ import requests
 difficulty = int(input("Choose the difficulty of your game (1,2,or 3): "))
 
 def generateWord():
-    resonse = "3"
-    if difficulty == 1:
-        response = requests.get("https://random-word-api.herokuapp.com/word?length=5")
-    elif difficulty == 2:
-        response = requests.get("https://random-word-api.herokuapp.com/word?length=7")
-    elif difficulty == 3:
-        response = requests.get("https://random-word-api.herokuapp.com/word?length=10")
+    resonse = ""
+    response = requests.get("https://random-word-api.herokuapp.com/word?length=10")
     randomWord = response.json()[0]
     return randomWord
 
 word = generateWord()
 wordlist = []
 
-def playGame():
-    mistakes = 5
+def playGame(mistake):
+    mistakes = mistake
     for index, char in enumerate(word):
         # print("_ ", end ="")
         wordlist.append(" _ ")
@@ -45,4 +40,9 @@ def letterCheck(letter, mistakes):
         print("That letter is not in the word. You have " + str(mistakes) + " mistakes left.")
     return mistakes
 
-playGame()
+if difficulty == 1:
+    playGame(10)
+elif difficulty == 2:
+    playGame(7)
+elif difficulty == 3:
+    playGame(5)
