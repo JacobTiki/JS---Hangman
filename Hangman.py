@@ -13,8 +13,8 @@ wordlist = []
 
 def playGame(mistake):
     mistakes = mistake
+    #Used ChatGPT to provide parameters of for loop
     for index, char in enumerate(word):
-        # print("_ ", end ="")
         wordlist.append(" _ ")
         print(wordlist[index],end="")
     print("")
@@ -29,6 +29,7 @@ def playGame(mistake):
 
 def letterCheck(letter, mistakes):
     inword = False
+    #Used ChatGPT to provide parameters of for loop
     for index, char in enumerate(word):
         if char == letter:
             wordlist[index] ="" + letter + ""
